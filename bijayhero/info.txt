@@ -1,0 +1,4 @@
+1) in setting include your app in installed app section
+2) create a directory : templates
+3) do the required settings for tempaltes to point to template directory
+4)
