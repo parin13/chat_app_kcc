@@ -69,6 +69,34 @@ def logout_fun(request):
 
 
 def online(request):
-    online_users=models.is_online()
+    online_users=models.is_online(request.session['username'])    
     return render(request,'online.html',{'online_users':online_users})
+
+
+def chat(request):
+    if request.method == 'GET':
+        request.session['msg_to'] = request.GET.get('i', '')
+        msg_to = request.session['msg_to']
+        return render(request, 'chat2.html', {'nameaa':msg_to})
+    else:
+        msg_to = request.session['msg_to']
+        text_msg = request.POST.get('msgbox',False)
+        # print text_msg
+        msg_from= request.session['username']
+        # print "asdfsadag"
+        models.chat_db(msg_from,msg_to,text_msg)
+        return JsonResponse({'msg':text_msg, 'username': msg_from})
+
+
+
+
+def messages(request):
+    msg_from = request.session['username']
+    msg_to = request.session['msg_to']
+
+    c = models.get_all_msg_db(msg_from,msg_to)
+    print (c)
+    return render(request, 'messages.html', {'chat': c})
+
+
 

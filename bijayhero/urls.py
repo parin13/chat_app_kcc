@@ -21,7 +21,8 @@ urlpatterns = [
     url(r'^register/$',views.register_fun, name='register'),
     url(r'^$',views.login_fun, name='login'),
     url(r'^logout/$',views.logout_fun, name='logout'),
-        url(r'^online/$', views.online, name='online'),
-
+    url(r'^online/$', views.online, name='online'),
+    url(r'^chat/$', views.chat, name='chat'),
+    url(r'^messages/$', views.messages, name='messages'),
 
 ]
